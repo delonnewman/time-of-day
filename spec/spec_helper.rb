@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "time/of/day"
+require "time-of-day"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

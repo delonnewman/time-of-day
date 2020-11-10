@@ -1,4 +1,5 @@
 require 'date'
+require 'time'
 
 require "time_of_day/version"
 require 'time_of_day/series'
