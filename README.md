@@ -34,10 +34,6 @@ TimeOfDay::Series('8:34AM', '12:05PM', '1:34PM', '5:23PM').work_time.to_f # 450.
 TimeOfDay::Series('8:34AM', '12:05PM', '1:34PM', '5:23PM').break_time.to_f # 90.0 (in minutes)
 ```
 
-## Why?
-
-
-
 ## Installation
 
 Add this line to your application's Gemfile:
