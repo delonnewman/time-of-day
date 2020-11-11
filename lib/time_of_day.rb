@@ -23,14 +23,14 @@ module Kernel
       raise "Don't know how to coerce #{value.inspect} into a TimeOfDay"
     end
   end
-  
-  def TimeInterval(start_at, end_at)
-    TimeOfDay::Series.new(TimeOfDay(start_at), TimeOfDay(end_at))
-  end
 end
 
 class TimeOfDay
   include Comparable
+
+  def self.Series(*times)
+    TimeOfDay::Series.from_enumerable(times.map { |v| TimeOfDay(v) })
+  end
 
   def self.format(string)
     if string =~ /\A\d{1,2}:\d\d (AM|PM)\z/
