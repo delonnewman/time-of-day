@@ -1,6 +1,6 @@
 # TimeOfDay
 
-A Ruby object that represents a given time-of-day. Makes it easy to perform work time calculations (based on U.S. federal regulations).
+A Ruby object that represents a given time-of-day separate from any Date information. Makes it easy to perform work time calculations (based on U.S. federal regulations).
 
 ## Synopsis
 
@@ -51,6 +51,11 @@ And then execute:
 Or install it yourself as:
 
     $ gem install time-of-day
+
+## See Also
+
+- [Time](https://ruby-doc.org/core-2.7.2/Time.html)
+- [Date](https://ruby-doc.org/stdlib-2.7.2/libdoc/date/rdoc/index.html)
 
 ## License
 
