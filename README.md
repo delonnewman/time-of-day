@@ -1,5 +1,7 @@
 # TimeOfDay
 
+A Ruby object that represents a given time-of-day. Makes it easy to perform work time calculations (based on U.S. federal regulations).
+
 ## Synopsis
 
 ### Arithmetic
