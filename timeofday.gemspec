@@ -1,14 +1,14 @@
 require_relative 'lib/time_of_day/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "time-of-day"
+  spec.name          = "timeofday"
   spec.version       = TimeOfDay::VERSION
   spec.authors       = ["Delon Newman"]
   spec.email         = ["contact@delonnewman.name"]
 
-  spec.summary       = %q{An Object for representing a given time-of-day.}
+  spec.summary       = %q{An object for representing a given time-of-day, and performing work-time calculations.}
   spec.description   = spec.summary
-  spec.homepage      = "https://github.com/delonnewman/time-of-day"
+  spec.homepage      = "https://github.com/delonnewman/timeofday"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
