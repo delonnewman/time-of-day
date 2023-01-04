@@ -1,39 +1,61 @@
 # TimeOfDay
 
-A Ruby object that represents a given time-of-day separate from any Date information. Makes it easy to perform work time calculations (based on U.S. federal regulations).
+A Ruby object that represents a given time-of-day separate from any Date information. Makes it easy to perform work time calculations.
 
 ## Synopsis
 
 ### Arithmetic
 
 ```ruby
-(TimeOfDay('1:12PM') + 1).to_s # => "1:13 PM"
+(TimeOfDay('1:12 PM') + 1) # => 1:13 PM
 
-(TimeOfDay('1:12PM') - 1).to_s # => "1:12 PM"
+(TimeOfDay('1:12 PM') - 1) # => 1:11 PM
 ```
 
 ### Range Support
 
 ```ruby
-(TimeOfDay('8:00AM')..TimeOfDay('5:00PM')).map(&:to_s) # => ["8:00 AM", "8:15 AM", "8:30 AM", ...]
+(TimeOfDay('8:00 AM')..TimeOfDay('5:00 PM')).to_a # => [8:00 AM, 8:15 AM, 8:30 AM, ...]
 ```
 
-### Rounding the nearest 15min interval
+### Comparable
 
 ```ruby
-TimeOfDay('8:34AM').round.to_s # => "8:30 AM"
+TimeOfDay('8:00 AM') < TimeOfDay('8:03 AM') # => true
+
+# Can compare to Time objects
+TimeOfDay.now == Time.now # true
+TimeOfDay.now > Time.now # false
+```
+
+### Pattern Matching
+
+```ruby
+TimeOfDay('8:24 AM') in [hour, *]
+hour # => 8
+
+TimeOfDay('10:43 AM').round => min:
+min # => 45
+```
+
+### Rounding
+
+```ruby
+TimeOfDay('8:17 AM').round # => 8:15 AM
+
+TimeOfDay('8:17 AM').round(30) # => 8:30 AM
 ```
 
 ### Rounded time calculations
 
 ```ruby
-TimeOfDay::Series('8:34AM', '12:05PM').hours.to_f # => 3.5
+TimeSeries('8:34 AM', '12:05 PM').hours.to_f # => 3.5
 
-TimeOfDay::Series('8:34AM', '12:05PM', '1:34PM', '5:23PM').hours.to_f # => 7.5
+TimeSeries('8:34 AM', '12:05 PM', '1:34 PM', '5:23 PM').hours.to_f # => 7.5
 
-TimeOfDay::Series('8:34AM', '12:05PM', '1:34PM', '5:23PM').work_time.to_f # 450.0 (in minutes)
+TimeSeries('8:34 AM', '12:05 PM', '1:34 PM', '5:23 PM').interval_time.to_f # => 450.0 (in minutes)
 
-TimeOfDay::Series('8:34AM', '12:05PM', '1:34PM', '5:23PM').break_time.to_f # 90.0 (in minutes)
+TimeSeries('8:34 AM', '12:05 PM', '1:34 PM', '5:23 PM').gap_time.to_f # => 90.0 (in minutes)
 ```
 
 ## Installation
@@ -61,6 +83,3 @@ Or install it yourself as:
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-## Code of Conduct
-
-Everyone interacting in the TimeOfDay project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/time-of-day/blob/master/CODE_OF_CONDUCT.md).

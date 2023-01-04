@@ -33,7 +33,7 @@ RSpec.describe TimeOfDay do
     MatchExample.new(expected)
   end
 
-  context '.parse' do
+  describe '.parse' do
     it 'should parse in "HH:MM PP" format' do
       examples = [
         { string: '8:23 AM', hour: 8, min: 23 },
@@ -63,9 +63,29 @@ RSpec.describe TimeOfDay do
 
       expect_examples_to_be_valid(examples)
     end
+
+    it 'should parse "HH:MM PP" format' do
+      examples = [
+        { string: '8:23 AM', hour: 8, min: 23 },
+        { string: '8:35 PM', hour: 20, min: 35 },
+        { string: '12:05 PM', hour: 12, min: 5 },
+      ]
+
+      expect_examples_to_be_valid(examples)
+    end
+
+    it 'should parse "HH:MM pp" format' do
+      examples = [
+        { string: '8:23 am', hour: 8, min: 23 },
+        { string: '8:35 pm', hour: 20, min: 35 },
+        { string: '12:05 pm', hour: 12, min: 5 },
+      ]
+
+      expect_examples_to_be_valid(examples)
+    end
   end
 
-  context '#round' do
+  describe '#round' do
     it 'should round to the nearest 15 minutes' do
       examples = [
         { string: '8:00', hour: 8, min: 0 },
